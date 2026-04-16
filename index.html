@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Resume Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>🤖 AI Resume Analyzer</h1>
+  <p>Paste your resume below for instant analysis</p>
+
+  <textarea id="resume" placeholder="Paste your resume here..."></textarea>
+
+  <button onclick="analyzeResume()">Analyze Resume</button>
+
+  <div class="output">
+    <h3>📊 Results</h3>
+    <p id="score">ATS Score: --</p>
+    <p id="skills">Skills: --</p>
+    <p id="feedback">Feedback: --</p>
+  </div>
+
+</div>
+
+<script>
+function analyzeResume() {
+  let text = document.getElementById("resume").value.toLowerCase();
+
+  let skills = [];
+
+  if (text.includes("javascript")) skills.push("JavaScript");
+  if (text.includes("react")) skills.push("React");
+  if (text.includes("python")) skills.push("Python");
+  if (text.includes("sql")) skills.push("SQL");
+
+  let score = Math.min(100, skills.length * 25);
+
+  document.getElementById("score").innerText =
+    "ATS Score: " + score + "/100";
+
+  document.getElementById("skills").innerText =
+    "Skills: " + (skills.length ? skills.join(", ") : "None detected");
+
+  let feedback =
+    score > 70
+      ? "Strong resume 👍"
+      : "Improve by adding more technical skills";
+
+  document.getElementById("feedback").innerText = feedback;
+}
+</script>
+
+</body>
+</html>
